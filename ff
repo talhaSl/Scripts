@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  moodle:
+    image: moodlehq/moodle-php-apache:8.0
+    ports:
+      - "8090:80"
+    environment:
+      - MOODLE_DB_TYPE=mysql
+      - MOODLE_DB_HOST=mysql
+      - MOODLE_DB_PORT=3306
+      - MOODLE_DB_USER=moodle
+      - MOODLE_DB_PASSWORD=moodlepassword
+      - MOODLE_DB_NAME=moodle
+    depends_on:
+      - mysql
+    networks:
+      - moodle-network
+
+  mysql:
+    image: mysql:8.0.32
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=moodle
+      - MYSQL_USER=moodle
+      - MYSQL_PASSWORD=moodlepassword
+    networks:
+      - moodle-network
+
+networks:
+  moodle-network:
