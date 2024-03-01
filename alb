@@ -5,13 +5,12 @@ resource "aws_lb" "my_load_balancer" {
   security_groups    = [aws_security_group.my_security_group.id]
   subnets            = [aws_subnet.my_subnet.id]
 
-  enable_deletion_protection = false # Set to true if needed
+  enable_deletion_protection = false 
 
-  enable_cross_zone_load_balancing = true # Set to false if needed
+  enable_cross_zone_load_balancing = true 
 
-  enable_http2 = true # Set to false if needed
+  enable_http2 = true 
 
-  enable_deletion_protection = false # Set to true if needed
 }
 
 # Create a target group
